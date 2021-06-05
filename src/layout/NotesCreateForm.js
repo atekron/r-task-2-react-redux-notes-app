@@ -1,20 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { currentDate, generateID } from "../utils/utils";
 import { createNote } from "../redux/notes/notesSlice";
-// const note = {
-//   id: 8,
-//   created: "05/06/2021",
-//   content: "awesom new note was just dispatched",
-//   category: "Idea",
-//   archived: false,
-//   markDelete: false,
-// };
-// const tableTitles = ["Name", "Created", "Category", "Content", "Dates"];
-// nextId: 8,
-const categories = ["Task", "Random Thought", "Idea", "Quote"];
+import { categoriesList } from "../redux/notes/categoriesSlice";
 
 export default function NotesCreateForm(props) {
+  const categories = useSelector(categoriesList);
   const dispatch = useDispatch();
   const [noteCategory, setNoteCategory] = useState("Task");
   const [noteContent, setNoteContent] = useState("");
