@@ -7,6 +7,7 @@ const initialState = [
     content: "first note",
     category: "Task",
     archived: false,
+    editMode: false,
   },
   {
     id: "2",
@@ -14,6 +15,7 @@ const initialState = [
     content: "second 2/15/2016 15/8/1987 note",
     category: "Task",
     archived: false,
+    editMode: false,
   },
   {
     id: "3",
@@ -21,6 +23,7 @@ const initialState = [
     content: "third note",
     category: "Random Thought",
     archived: false,
+    editMode: false,
   },
   {
     id: "4",
@@ -28,6 +31,7 @@ const initialState = [
     content: "another note",
     category: "Idea",
     archived: false,
+    editMode: false,
   },
   {
     id: "5",
@@ -35,6 +39,7 @@ const initialState = [
     content: "some note",
     category: "Idea",
     archived: false,
+    editMode: false,
   },
   {
     id: "6",
@@ -42,6 +47,7 @@ const initialState = [
     content: "random note",
     category: "Random Thought",
     archived: false,
+    editMode: false,
   },
   {
     id: "7",
@@ -49,6 +55,7 @@ const initialState = [
     content: "last note",
     category: "Idea",
     archived: false,
+    editMode: false,
   },
 ];
 
@@ -57,7 +64,7 @@ export const notesSlice = createSlice({
   initialState,
   reducers: {
     createNote: (state, action) => {
-      state.push({ ...action.payload });
+      state.unshift({ ...action.payload });
     },
 
     archiveNote: (state, action) => {
@@ -67,7 +74,19 @@ export const notesSlice = createSlice({
       state[archiveIndex].archived = !state[archiveIndex].archived;
     },
 
-    editNote: (state, action) => {},
+    updateNote: (state, action) => {
+      const updateIndex = state.findIndex(
+        (note) => note.id === action.payload.id
+      );
+      state[updateIndex].content = action.payload.content;
+      state[updateIndex].category = action.payload.category;
+      state[updateIndex].editMode = false;
+    },
+
+    editNote: (state, action) => {
+      const editIndex = state.findIndex((note) => note.id === action.payload);
+      state[editIndex].editMode = !state[editIndex].archived;
+    },
 
     deleteNote: (state, action) =>
       state.filter((note) => note.id !== action.payload),
@@ -76,7 +95,7 @@ export const notesSlice = createSlice({
 
 export const notesList = (state) => state.notes;
 
-export const { createNote, editNote, archiveNote, deleteNote } =
+export const { createNote, editNote, archiveNote, deleteNote, updateNote } =
   notesSlice.actions;
 
 export default notesSlice.reducer;

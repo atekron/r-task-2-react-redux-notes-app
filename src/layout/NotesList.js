@@ -26,7 +26,7 @@ function NotesList() {
       {notes
         .filter((note) => note.archived === showArchive)
         .map((note) => (
-          <Note note={note} key={note.id} />
+          <Note note={note} key={note.id} editMode={note.editMode} />
         ))}
     </div>
   );
