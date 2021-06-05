@@ -6,6 +6,9 @@ import { useState } from "react";
 
 export default function NotesHeader() {
   const [isFormVisible, setFormVisible] = useState(false);
+  const handleFormDisplay = (isVisible) => {
+    setFormVisible(isVisible);
+  };
   return (
     <>
       <header className="header">
@@ -19,7 +22,7 @@ export default function NotesHeader() {
           Create Note
         </button>
       </header>
-      <NotesCreateForm visible={isFormVisible} />
+      <NotesCreateForm visible={isFormVisible} onSave={handleFormDisplay} />
     </>
   );
 }
