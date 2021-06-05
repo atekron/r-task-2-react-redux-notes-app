@@ -1,6 +1,0 @@
-.NotesHeader {
-  padding: 0.5rem;
-  background-color: aqua;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-}
