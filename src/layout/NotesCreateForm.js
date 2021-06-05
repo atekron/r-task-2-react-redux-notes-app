@@ -19,7 +19,6 @@ export default function NotesCreateForm(props) {
       content: noteContent,
       category: noteCategory,
       archived: false,
-      markDelete: false,
     };
     props.onSave(false);
     setNoteCategory("");

@@ -134,3 +134,19 @@ button:hover {
   margin-right: 1rem;
   margin-top: 0.5rem;
 }
+
+.summary__content {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 0.1rem solid brown;
+  padding-bottom: 0.5rem;
+}
+
+.summary__row {
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline-block;
+  flex-grow: 1;
+}
