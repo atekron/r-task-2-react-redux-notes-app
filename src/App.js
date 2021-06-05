@@ -1,22 +1,13 @@
-import "./App.css";
 import NotesHeader from "./layout/NotesHeader";
 import NotesList from "./layout/NotesList";
-import CreateNoteBtn from "./components/CreateNoteBtn";
+import NotesSummary from "./layout/NotesSummary";
 
-function App() {
-  const note = {
-    id: 8,
-    created: "05/06/2021",
-    content: "awesom new note was just dispatched",
-    category: "Idea",
-  };
+export default function App() {
   return (
-    <div className="App">
+    <div className="container">
       <NotesHeader />
       <NotesList />
-      <CreateNoteBtn note={note} />
+      <NotesSummary />
     </div>
   );
 }
-
-export default App;

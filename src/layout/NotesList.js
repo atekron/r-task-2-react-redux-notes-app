@@ -1,29 +1,33 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  createNote,
-  editNote,
-  archiveNote,
-  deleteNote,
-  notesList,
-} from "../redux/notes/notesSlice";
+import { useSelector } from "react-redux";
+import { notesList } from "../redux/notes/notesSlice";
+import { useState } from "react";
 
-import "./NotesList.css";
 import Note from "../components/Note";
 
 function NotesList() {
-  const dispatch = useDispatch();
+  const [showArchive, setShowArchive] = useState(false);
   const notes = useSelector(notesList);
   return (
-    <div className="NotesList">
-      {notes.map((note) => (
-        <div key={note.id.toString()}>
-          {console.log(note)}
-          <h3>{note.created}</h3>
-          <p>{note.content}</p>
-          <p>{note.category}</p>
-        </div>
-      ))}
+    <div className="content">
+      <nav className="nav">
+        <button
+          className="nav__all medium-btn"
+          onClick={() => setShowArchive(false)}
+        >
+          All Notes
+        </button>
+        <button
+          className="nav__archive medium-btn"
+          onClick={() => setShowArchive(true)}
+        >
+          Archive
+        </button>
+      </nav>
+      {notes
+        .filter((note) => note.archived === showArchive)
+        .map((note) => (
+          <Note note={note} key={note.id} editMode={note.editMode} />
+        ))}
     </div>
   );
 }
